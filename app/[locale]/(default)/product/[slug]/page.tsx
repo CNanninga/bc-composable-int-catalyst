@@ -16,6 +16,7 @@ import { Reviews } from './_components/reviews';
 import { Warranty } from './_components/warranty';
 
 import Faqs from './_components/faqs';
+import FaqsLoading from './_components/faqs/loading';
 
 interface ProductPageProps {
   params: { slug: string; locale: LocaleType };
@@ -89,7 +90,9 @@ export default async function Product({ params, searchParams }: ProductPageProps
 
             <h2 className="text-2xl font-bold my-4">{t('FAQ.heading')}</h2>
             <div className="mx-auto md:w-2/3">
-              <Faqs locale={locale} productId={product.entityId} />
+              <Suspense fallback={<FaqsLoading />}>
+                <Faqs locale={locale} productId={product.entityId} />
+              </Suspense>
             </div>
 
             <Suspense fallback={t('loading')}>
