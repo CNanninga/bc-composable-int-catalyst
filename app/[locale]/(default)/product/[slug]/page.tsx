@@ -15,6 +15,8 @@ import { RelatedProducts } from './_components/related-products';
 import { Reviews } from './_components/reviews';
 import { Warranty } from './_components/warranty';
 
+import { getProductFaqMetafields } from '~/client/queries/get-product-faq-metafields';
+
 interface ProductPageProps {
   params: { slug: string; locale: LocaleType };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -73,6 +75,9 @@ export default async function Product({ params, searchParams }: ProductPageProps
   if (!product) {
     return notFound();
   }
+
+  const faqData = await getProductFaqMetafields(product.entityId, 2);
+  console.log(faqData);
 
   return (
     <>
