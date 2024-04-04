@@ -8,6 +8,7 @@ import {
 } from '@bigcommerce/components/accordion';
 import { Button } from '@bigcommerce/components/button';
 import { Loader2 as Spinner } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 
 import { getProductFaqMetafields } from '~/client/queries/get-product-faq-metafields';
@@ -37,7 +38,8 @@ const ProductFaqs = ({
       setEndCursor(nextFaqData.endCursor);
       setFaqs(faqs.concat(nextFaqData.faqs));
     } catch (err) {
-      // Handle error
+      const error = err instanceof Error ? err.message : String(err);
+      toast.error(error);
     }
 
     setPending(false);
