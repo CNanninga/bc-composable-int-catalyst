@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from '@bigcommerce/components/accordion';
 import { Button } from '@bigcommerce/components/button';
+import { Loader2 as Spinner } from 'lucide-react';
 import { useState } from 'react';
 
 import { getProductFaqMetafields } from '~/client/queries/get-product-faq-metafields';
@@ -25,8 +26,11 @@ const ProductFaqs = ({
 }) => {
   const [faqs, setFaqs] = useState(faqData.faqs);
   const [endCursor, setEndCursor] = useState(faqData.endCursor);
+  const [pending, setPending] = useState(false);
 
   const getNextFaqs = async () => {
+    setPending(true);
+
     try {
       const nextFaqData = await getNextProductFaqs(productId, limit, endCursor);
 
@@ -35,6 +39,8 @@ const ProductFaqs = ({
     } catch (err) {
       // Handle error
     }
+
+    setPending(false);
   };
 
   return (
@@ -54,7 +60,11 @@ const ProductFaqs = ({
           onClick={getNextFaqs}
           variant="secondary"
         >
-          <span>{loadMoreLabel}</span>
+          {pending ? (
+            <Spinner aria-hidden="true" className="mx-auto animate-spin" />
+          ) : (
+            <span>{loadMoreLabel}</span>
+          )}
         </Button>
       )}
     </>
