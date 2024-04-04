@@ -15,7 +15,7 @@ import { RelatedProducts } from './_components/related-products';
 import { Reviews } from './_components/reviews';
 import { Warranty } from './_components/warranty';
 
-import { getProductFaqMetafields } from '~/client/queries/get-product-faq-metafields';
+import Faqs from './_components/faqs';
 
 interface ProductPageProps {
   params: { slug: string; locale: LocaleType };
@@ -76,9 +76,6 @@ export default async function Product({ params, searchParams }: ProductPageProps
     return notFound();
   }
 
-  const faqData = await getProductFaqMetafields(product.entityId, 2);
-  console.log(faqData);
-
   return (
     <>
       <BreadCrumbs productId={product.entityId} />
@@ -89,6 +86,12 @@ export default async function Product({ params, searchParams }: ProductPageProps
           <div className="lg:col-span-2">
             <Description product={product} />
             <Warranty product={product} />
+
+            <h2 className="text-2xl font-bold my-4">{t('FAQ.heading')}</h2>
+            <div className="mx-auto md:w-2/3">
+              <Faqs locale={locale} productId={product.entityId} />
+            </div>
+
             <Suspense fallback={t('loading')}>
               <Reviews productId={product.entityId} />
             </Suspense>

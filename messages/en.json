@@ -82,6 +82,9 @@
       "processing": "Processing...",
       "addToCart": "Add to cart",
       "compare": "Compare"
+    },
+    "FAQ": {
+      "heading": "Frequently Asked Questions"
     }
   },
   "Compare": {
