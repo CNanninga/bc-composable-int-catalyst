@@ -7,7 +7,7 @@ const getNextProductFaqs = async (
   limit: number,
   endCursor?: string | null
 ) => {
-  return { endCursor: null, faqs: [] };
+  return getProductFaqMetafields(productId, limit, endCursor);
 };
 
 export default getNextProductFaqs;
