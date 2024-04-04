@@ -7,11 +7,12 @@ const Faqs = async ({ productId, locale }: { productId: number, locale: LocaleTy
   const limit = 2;
 
   const faqData = await getProductFaqMetafields(productId, limit);
+  const t = await getTranslations({ locale, namespace: "Product" });
 
   return <ProductFaqs 
     faqData={faqData} 
     limit={limit} 
-    loadMoreLabel=''
+    loadMoreLabel={t('FAQ.loadMore')}
     productId={productId}
   />;
 };
