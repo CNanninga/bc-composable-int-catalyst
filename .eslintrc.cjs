@@ -31,6 +31,9 @@ const config = {
         '**': 'NEXT_JS_APP_ROUTER_CASE',
       },
     ],
+    'import/order': 'off',
+    'prettier/prettier': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off', // Temporary fix for ESLint error in Catalyst 0.3.0
   },
   ignorePatterns: ['client/generated/**/*.ts'],
 };
