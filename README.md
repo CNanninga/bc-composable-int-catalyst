@@ -1,3 +1,5 @@
+DEPRECATED: See https://github.com/CNanninga/bc-catalyst-essentials
+
 # Catalyst Essentials
 
 This Catalyst project supports the lab work for BigCommerce Catalyst Essentials.
